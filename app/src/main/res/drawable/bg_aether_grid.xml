@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="800dp"
+    android:viewportWidth="360"
+    android:viewportHeight="800">
+
+    <!-- base navy fill -->
+    <path
+        android:fillColor="#050713"
+        android:pathData="M0,0h360v800h-360z" />
+
+    <!-- vertical grid lines -->
+    <path
+        android:strokeWidth="0.5"
+        android:strokeColor="#202848"
+        android:pathData="
+            M20,0 L20,800
+            M60,0 L60,800
+            M100,0 L100,800
+            M140,0 L140,800
+            M180,0 L180,800
+            M220,0 L220,800
+            M260,0 L260,800
+            M300,0 L300,800
+            M340,0 L340,800" />
+
+    <!-- horizontal grid lines -->
+    <path
+        android:strokeWidth="0.5"
+        android:strokeColor="#202848"
+        android:pathData="
+            M0,40 L360,40
+            M0,80 L360,80
+            M0,120 L360,120
+            M0,160 L360,160
+            M0,200 L360,200
+            M0,240 L360,240
+            M0,280 L360,280
+            M0,320 L360,320
+            M0,360 L360,360
+            M0,400 L360,400
+            M0,440 L360,440
+            M0,480 L360,480
+            M0,520 L360,520
+            M0,560 L360,560
+            M0,600 L360,600
+            M0,640 L360,640
+            M0,680 L360,680
+            M0,720 L360,720
+            M0,760 L360,760" />
+
+    <!-- subtle outer glow -->
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#262F5F"
+        android:pathData="M4,4h352v792h-352z" />
+</vector>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Active icon -->
-    <item android:state_checked="true" android:color="@color/aether_soft_lavender"/>
+    <!-- ACTIVE ICON: Aether Purple -->
+    <item
+        android:state_checked="true"
+        android:color="@color/aether_icon_active" />
 
-    <!-- Inactive icon -->
-    <item android:color="@color/aether_text_tertiary"/>
+    <!-- INACTIVE ICON: Neutral High-Contrast Grey -->
+    <item
+        android:color="@color/aether_icon_inactive" />
 
 </selector>

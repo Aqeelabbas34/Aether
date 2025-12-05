@@ -17,10 +17,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var hourlyAdapter: HourlyForecastAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // You can handle fragment args here if needed later
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

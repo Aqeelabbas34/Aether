@@ -1,23 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/homeFragment2"
         android:icon="@drawable/ic_home"
         android:title="Home" />
 
     <item
-        android:id="@+id/whatToWearFragment"
+        android:id="@+id/whatToWearFragment2"
         android:icon="@drawable/ic_outfit"
         android:title="Outfit" />
 
     <item
-        android:id="@+id/locationsFragment"
+        android:id="@+id/locationsFragment2"
         android:icon="@drawable/ic_locations"
         android:title="Locations" />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/profileFragment2"
         android:icon="@drawable/ic_user"
         android:title="Profile" />
 

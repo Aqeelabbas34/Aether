@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AetherBlurView">
+        <!-- Blur radius in dp (only used on API 31+, cosmetic) -->
+        <attr name="blurRadius" format="dimension" />
+        <!-- Corner radius of the rounded rect -->
+        <attr name="cornerRadius" format="dimension" />
+        <!-- Start and end colors for the gradient tint -->
+        <attr name="tintStartColor" format="color" />
+        <attr name="tintEndColor" format="color" />
+        <!-- Alpha of the tint [0..1] -->
+        <attr name="tintAlpha" format="float" />
+    </declare-styleable>
+
+</resources>

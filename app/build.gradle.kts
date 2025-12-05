@@ -93,6 +93,9 @@ dependencies {
 
     // --- Location: current location weather ---
     implementation(libs.play.services.location)
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.glide)
+
+    implementation("com.github.Dimezis:BlurView:version-3.2.0")
+
 
 }

@@ -86,7 +86,7 @@
                         android:padding="10dp"
                         android:background="@drawable/neo_circle"
                         android:src="@drawable/ic_bell"
-                        android:tint="@color/nav_icon_selector"/>
+                        app:tint="@color/nav_icon_selector" />
 
                     <ImageView
                         android:id="@+id/btnAddLocation"

@@ -1,14 +1,454 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment">
+    android:fillViewport="true"
+    android:background="@color/aether_bg_dark">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp">
 
-</FrameLayout>
+        <FrameLayout
+            android:id="@+id/avatarContainer"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/gradient_primary_round"
+            android:padding="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_user"
+                app:tint="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/txtUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aether User"
+            android:textColor="@color/aether_text_primary"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/avatarContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/txtMembership"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Premium Member"
+            android:textColor="@color/aether_text_secondary"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/txtUserName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditProfile"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="Edit Profile"
+            android:gravity="center"
+            android:textColor="@color/aether_text_primary"
+            android:textSize="14sp"
+            android:backgroundTint="@color/aether_purple_start"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txtMembership"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/statsRow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            app:layout_constraintTop_toBottomOf="@id/btnEditProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStat1"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/aether_bg_surface"
+                app:cardCornerRadius="22dp"
+                app:strokeWidth="0dp"
+                app:strokeColor="@android:color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cardStat2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="@drawable/neo_card"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtStatLocationsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textSize="22sp"
+                        android:textColor="@color/aether_text_primary"/>
+
+                    <TextView
+                        android:id="@+id/txtStatLocationsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Locations"
+                        android:textColor="@color/aether_text_secondary"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStat2"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/aether_bg_surface"
+                app:cardCornerRadius="22dp"
+                app:strokeWidth="0dp"
+                app:strokeColor="@android:color/transparent"
+                app:layout_constraintStart_toEndOf="@id/cardStat1"
+                app:layout_constraintEnd_toStartOf="@id/cardStat3"
+                app:layout_constraintTop_toTopOf="@id/cardStat1"
+                app:layout_constraintHorizontal_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtStatDaysValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45"
+                        android:textSize="22sp"
+                        android:textColor="@color/aether_text_primary"/>
+
+                    <TextView
+                        android:id="@+id/txtStatDaysLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Days Active"
+                        android:textSize="12sp"
+                        android:textColor="@color/aether_text_secondary"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStat3"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/aether_bg_surface"
+                app:cardCornerRadius="22dp"
+                app:strokeWidth="0dp"
+                app:strokeColor="@android:color/transparent"
+                app:layout_constraintStart_toEndOf="@id/cardStat2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardStat1"
+                app:layout_constraintHorizontal_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtStatAlertsValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28"
+                        android:textSize="22sp"
+                        android:textColor="@color/aether_text_primary"/>
+
+                    <TextView
+                        android:id="@+id/txtStatAlertsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Alerts"
+                        android:textSize="12sp"
+                        android:textColor="@color/aether_text_secondary"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/labelPrefs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PREFERENCES"
+            android:textColor="@color/aether_text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/statsRow"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPreferences"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/aether_bg_surface"
+            app:cardCornerRadius="26dp"
+            app:strokeWidth="0dp"
+            app:strokeColor="@android:color/transparent"
+            app:layout_constraintTop_toBottomOf="@id/labelPrefs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- ROW 1 : Notifications -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/prefIcon1"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:padding="10dp"
+                        android:backgroundTint="@color/aether_night_start"
+                        app:cardCornerRadius="8dp"
+                        app:strokeWidth="1dp"
+                        android:elevation="6dp"
+                        app:strokeColor="@color/aether_bg_surface"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/neo_chip"
+                            android:backgroundTint="@color/aether_night_start">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_bell"
+                                app:tint="@color/aether_text_secondary"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/rowNotifTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Notifications"
+                        android:textColor="@color/aether_text_primary"
+                        android:textSize="16sp"
+                        android:layout_marginStart="14dp"
+
+                        app:layout_constraintStart_toEndOf="@id/prefIcon1"
+                        app:layout_constraintEnd_toStartOf="@id/switchNotif"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/rowNotifSub"
+                        app:layout_constraintVertical_chainStyle="packed"/>
+
+                    <TextView
+                        android:id="@+id/rowNotifSub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Weather alerts and updates"
+                        android:textColor="@color/aether_text_secondary"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="@id/rowNotifTitle"
+                        app:layout_constraintEnd_toStartOf="@id/switchNotif"
+                        app:layout_constraintTop_toBottomOf="@id/rowNotifTitle"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchNotif"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/aether_frost_14"/>
+
+                <!-- ROW 2 : Auto Refresh -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/prefIcon2"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:padding="10dp"
+                        android:backgroundTint="@color/aether_bg_surface"
+                        app:cardCornerRadius="8dp"
+                        app:strokeWidth="0dp"
+                        app:strokeColor="@android:color/transparent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/neo_chip"
+                            android:backgroundTint="@color/aether_night_start"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_refresh"
+                                app:tint="@color/aether_text_secondary"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/rowRefreshTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Auto Refresh"
+                        android:textColor="@color/aether_text_primary"
+                        android:textSize="16sp"
+                        android:layout_marginStart="14dp"
+                        app:layout_constraintStart_toEndOf="@id/prefIcon2"
+                        app:layout_constraintEnd_toStartOf="@id/switchRefresh"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/rowRefreshSub"
+                        app:layout_constraintVertical_chainStyle="packed"/>
+
+                    <TextView
+                        android:id="@+id/rowRefreshSub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Update data automatically"
+                        android:textColor="@color/aether_text_secondary"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="@id/rowRefreshTitle"
+                        app:layout_constraintEnd_toStartOf="@id/switchRefresh"
+                        app:layout_constraintTop_toBottomOf="@id/rowRefreshTitle"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchRefresh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/labelUnits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNITS  FORMAT"
+            android:textColor="@color/aether_text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/cardPreferences"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardUnits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/aether_bg_surface"
+            app:cardCornerRadius="26dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:layout_constraintTop_toBottomOf="@id/labelUnits"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include android:id="@+id/rowTemp" layout="@layout/item_setting_row"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/aether_frost_14"/>
+
+                <include android:id="@+id/rowWind" layout="@layout/item_setting_row"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/aether_frost_14"/>
+
+                <include android:id="@+id/rowDistance" layout="@layout/item_setting_row"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignOut"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="Sign Out"
+            android:gravity="center"
+            android:textColor="@color/aether_text_primary"
+            android:textSize="16sp"
+            android:backgroundTint="@color/aether_purple_start"
+            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/cardUnits"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/txtFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aether Weather v2.0\n© 2025 · Crafted with precision"
+            android:textColor="@color/aether_text_tertiary"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/btnSignOut"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

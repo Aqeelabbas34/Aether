@@ -6,7 +6,10 @@
     android:viewportWidth="400"
     android:viewportHeight="72">
 
-    <!-- BASE CAPSULE GRADIENT (purple → neutral → blue) -->
+    <!-- ==========================================
+         1. BASE CAPSULE — 100% OPAQUE GRADIENT
+         (No alpha, no transparency)
+         ========================================== -->
     <path
         android:pathData="M36,0 H364
                            A36,36 0 0 1 400,36
@@ -18,13 +21,17 @@
             <gradient
                 android:type="linear"
                 android:angle="0"
-                android:startColor="#263F29F8"
-                android:centerColor="#14162233"
-                android:endColor="#263B82F6" />
+                android:startColor="#3F29F8"
+            android:centerColor="#161D33"
+            android:endColor="#3B82F6"
+            />
         </aapt:attr>
     </path>
 
-    <!-- FROST BASE HAZE (uniform soft white) -->
+    <!-- ==========================================
+         2. REMOVE ALL TRANSLUCENT FROST LAYERS
+         (This layer is now fully transparent)
+         ========================================== -->
     <path
         android:pathData="M36,0 H364
                            A36,36 0 0 1 400,36
@@ -32,24 +39,19 @@
                            H36
                            A36,36 0 0 1 0,36
                            A36,36 0 0 1 36,0 Z"
-        android:fillColor="#12FFFFFF" />
+        android:fillColor="#00FFFFFF" /> <!-- No opacity -->
 
-    <!-- FROST SHINE (diagonal highlight, top-left → center) -->
+    <!-- ==========================================
+         3. REMOVE HIGHLIGHT (OR KEEP OPAQUE IF YOU WANT)
+         Here kept fully transparent for a clean solid capsule
+         ========================================== -->
     <path
         android:pathData="M36,0 H364
                            A36,36 0 0 1 400,36
                            A36,36 0 0 1 364,72
                            H36
                            A36,36 0 0 1 0,36
-                           A36,36 0 0 1 36,0 Z">
-        <aapt:attr name="android:fillColor">
-            <gradient
-                android:type="linear"
-                android:angle="315"
-            android:startColor="#26FFFFFF"
-            android:centerColor="#08FFFFFF"
-            android:endColor="#00FFFFFF" />
-        </aapt:attr>
-    </path>
+                           A36,36 0 0 1 36,0 Z"
+        android:fillColor="#00FFFFFF" /> <!-- Highlight disabled -->
 
 </vector>
