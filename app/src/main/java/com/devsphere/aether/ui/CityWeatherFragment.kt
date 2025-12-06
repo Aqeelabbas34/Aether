@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.devsphere.aether.R
-import com.devsphere.aether.databinding.FragmentProfileBinding
+import com.devsphere.aether.databinding.FragmentCityWeatherBinding
 
 
-class ProfileFragment : Fragment() {
+class CityWeatherFragment : Fragment() {
 
 
-    private lateinit var _binding: FragmentProfileBinding
+    private lateinit var _binding: FragmentCityWeatherBinding
     private val binding get() = _binding
 
 
@@ -20,12 +20,10 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        _binding = FragmentCityWeatherBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-
-
 
 
 }

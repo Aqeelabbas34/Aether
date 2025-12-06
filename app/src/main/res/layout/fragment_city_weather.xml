@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/aether_bg_dark"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ================================
+       HERO IMAGE + OVERLAY GRADIENT
+  ==================================-->
+        <FrameLayout
+            android:id="@+id/hero_container"
+            android:layout_width="0dp"
+            android:layout_height="340dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Background image -->
+            <ImageView
+                android:id="@+id/imgHero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/gradient_fire" />
+
+            <!-- Dark gradient overlay -->
+            <View
+                android:id="@+id/viewHeroOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/hero_gradient_overlay" />
+
+            <!-- Content overlay -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/heroContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- CLOSE ICON – TOP RIGHT -->
+                <ImageView
+                    android:id="@+id/btnClose"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/pill_bg_glass"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/aether_text_primary" />
+
+                <!-- CHIPS ROW – BELOW CLOSE, ABOVE CITY -->
+                <LinearLayout
+                    android:id="@+id/pillsRow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <!-- Country chip (glass pill) -->
+                    <LinearLayout
+                        android:id="@+id/pillCountry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:background="@drawable/pill_bg_glass">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_pin"
+                            app:tint="@color/aether_purple_start" />
+
+                        <TextView
+                            android:id="@+id/txtCountry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="USA"
+                            android:textSize="13sp"
+                            android:textColor="@color/aether_text_primary" />
+                    </LinearLayout>
+
+                    <!-- Today chip -->
+                    <LinearLayout
+                        android:id="@+id/pillToday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:background="@drawable/pill_bg_glass">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_calendar"
+                            app:tint="@color/aether_blue_end" />
+
+                        <TextView
+                            android:id="@+id/txtToday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="Today"
+                            android:textSize="13sp"
+                            android:textColor="@color/aether_text_primary" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- BOTTOM INFO STACK: CITY, CONDITION, TEMP -->
+                <LinearLayout
+                    android:id="@+id/infoContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="26dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <!-- City name (reuse txtLocation id if you want) -->
+                    <TextView
+                        android:id="@+id/txtLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New York"
+                        android:textSize="36sp"
+                        android:textColor="@color/aether_text_primary"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/txtCondition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Rainy"
+                        android:textSize="18sp"
+                        android:textColor="@color/aether_text_secondary" />
+
+                    <!-- Temperature row -->
+                    <LinearLayout
+                        android:id="@+id/tempRow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/txtTemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="18"
+                            android:textSize="104sp"
+                            android:textColor="@color/aether_text_primary"
+                            android:fontFamily="sans-serif-black" />
+
+                        <TextView
+                            android:id="@+id/txtTempUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:text="°C"
+                            android:textSize="36sp"
+                            android:textColor="@color/aether_text_secondary"
+                            android:gravity="bottom" />
+                    </LinearLayout>
+
+                    <!-- Feels like (reuse txtHighLow id so code doesn't break) -->
+                    <TextView
+                        android:id="@+id/txtHighLow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-6dp"
+                        android:text="Feels like 20°C"
+                        android:textSize="14sp"
+                        android:textColor="@color/aether_text_tertiary" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSunTimes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hero_container"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/neo_card"
+                android:padding="20dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/midGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/aether_frost_14"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/midGuide"
+                    app:layout_constraintStart_toStartOf="@id/midGuide"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/blockSunrise"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/midGuide"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/gradient_fire"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_sunrise"
+                            app:tint="@color/white" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSunriseLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sunrise"
+                            android:textColor="@color/aether_text_secondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/txtSunrise"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="06:24"
+                            android:textColor="@color/aether_text_primary"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/blockSunset"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/midGuide"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/gradient_fire"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_sunset"
+                            app:tint="@color/white" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSunsetLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sunset"
+                            android:textColor="@color/aether_text_secondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/txtSunset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="18:42"
+                            android:textColor="@color/aether_text_primary"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===============================
+         METRICS GRID – CONSTRAINT LAYOUT
+ ===================================-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/metricsGrid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardSunTimes">
+
+            <!-- ===== COLUMN GUIDELINES ===== -->
+
+            <!-- Left edge -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gridLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0" />
+
+            <!-- Middle vertical line (50%) -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gridMid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <!-- Right edge -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gridRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="1" />
+
+            <!-- Row 1 height guideline -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gridRow1Bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="160dp" />
+
+
+            <!-- =======================
+                    HUMIDITY (Top-Left)
+            ===========================-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHumidity"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="26dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toTopOf="@id/gridRow1Bottom"
+                app:layout_constraintEnd_toStartOf="@id/gridMid"
+                app:layout_constraintStart_toStartOf="@id/gridLeft"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_ocean"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/icHumidity"
+                        android:layout_width="38dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_humidity"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/txtHumidityLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Humidity"
+                        android:textColor="@color/aether_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtHumidityValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="68%"
+                        android:textColor="@color/aether_text_primary"
+                        android:textSize="26sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- =======================
+                    WIND (Top-Right)
+            ===========================-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardWind"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="8dp"
+
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="26dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toTopOf="@id/gridRow1Bottom"
+                app:layout_constraintEnd_toStartOf="@id/gridRight"
+                app:layout_constraintStart_toStartOf="@id/gridMid"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_sky"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/icWind"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_wind"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/txtWindLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Wind"
+                        android:textColor="@color/aether_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtWindValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="12 km/h"
+                        android:textColor="@color/aether_text_primary"
+                        android:textSize="26sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- =======================
+                VISIBILITY (Bottom-Left)
+            ===========================-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardVisibility"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="26dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toStartOf="@id/gridMid"
+                app:layout_constraintStart_toStartOf="@id/gridLeft"
+                app:layout_constraintTop_toBottomOf="@id/gridRow1Bottom"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_emerald"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/icVisibility"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_visibility"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/txtVisibilityLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Visibility"
+                        android:textColor="@color/aether_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtVisibilityValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="10 km"
+                        android:textColor="@color/aether_text_primary"
+                        android:textSize="26sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- =======================
+                PRESSURE (Bottom-Right)
+            ===========================-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPressure"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="26dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toStartOf="@id/gridRight"
+                app:layout_constraintStart_toStartOf="@id/gridMid"
+                app:layout_constraintTop_toBottomOf="@id/gridRow1Bottom"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_cosmic"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/icPressure"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_pressure"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/txtPressureLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Pressure"
+                        android:textColor="@color/aether_text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtPressureValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="1013 mb"
+                        android:textColor="@color/aether_text_primary"
+                        android:textSize="26sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- ===============================
+              HOURLY FORECAST (RecyclerView)
+        =================================-->
+        <TextView
+            android:id="@+id/txtHourlyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:text="Hourly Forecast"
+            android:textColor="@color/aether_text_primary"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/metricsGrid" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardHourly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="26dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="false"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtHourlyTitle"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/neo_card"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHourly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingStart="12dp"
+                    android:paddingTop="14dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="14dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
